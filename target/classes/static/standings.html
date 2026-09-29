@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeagueTrack — Standings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="standings">
+
+<header>
+    <h1>LeagueTrack</h1>
+    <p>Intramural Sports Tournament Fixture and Standings</p>
+</header>
+
+<nav>
+    <a href="index.html" data-page="tournament">1. Tournament</a>
+    <a href="teams.html" data-page="teams">2. Teams</a>
+    <a href="fixture.html" data-page="fixture">3. Fixture</a>
+    <a href="standings.html" data-page="standings">4. Standings</a>
+</nav>
+
+<div class="current-tournament" id="currentTournament"></div>
+
+<main>
+    <section class="card">
+        <h2>Standings</h2>
+        <div class="row" style="margin-bottom:14px">
+            <button class="secondary" onclick="run(loadStandings)">Refresh</button>
+        </div>
+        <div id="standings"></div>
+    </section>
+</main>
+
+<div id="toast"></div>
+
+<script src="common.js"></script>
+<script src="standings.js"></script>
+</body>
+</html>

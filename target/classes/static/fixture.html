@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeagueTrack — Fixture</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="fixture">
+
+<header>
+    <h1>LeagueTrack</h1>
+    <p>Intramural Sports Tournament Fixture and Standings</p>
+</header>
+
+<nav>
+    <a href="index.html" data-page="tournament">1. Tournament</a>
+    <a href="teams.html" data-page="teams">2. Teams</a>
+    <a href="fixture.html" data-page="fixture">3. Fixture</a>
+    <a href="standings.html" data-page="standings">4. Standings</a>
+</nav>
+
+<div class="current-tournament" id="currentTournament"></div>
+
+<main>
+    <section class="card">
+        <h2>Fixture</h2>
+        <div class="row" style="margin-bottom:14px">
+            <button onclick="generateFixture()">Generate Round-Robin Fixture</button>
+            <button class="secondary" onclick="run(loadFixture)">Refresh</button>
+        </div>
+        <div id="fixture"></div>
+    </section>
+</main>
+
+<div id="toast"></div>
+
+<script src="common.js"></script>
+<script src="fixture.js"></script>
+</body>
+</html>

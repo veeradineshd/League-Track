@@ -1,0 +1,124 @@
+### 1. Create tournament
+POST http://localhost:8080/api/tournaments
+Content-Type: application/json
+
+{
+  "name": "Inter-Dept Football 2026",
+  "sport": "Football",
+  "winPoints": 3,
+  "drawPoints": 1,
+  "lossPoints": 0
+}
+
+### 2. Register teams (run all four)
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "CSE Strikers" }
+
+###
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "AI&DS Titans" }
+
+###
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "ECE Warriors" }
+
+###
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "MECH Bulls" }
+
+### 3. List teams
+GET http://localhost:8080/api/tournaments/1/teams
+
+### 4. Generate round-robin fixture
+POST http://localhost:8080/api/tournaments/1/fixtures
+
+### 5. View fixture
+GET http://localhost:8080/api/tournaments/1/fixtures
+
+### 6. Record result of match 1 (2-1)
+POST http://localhost:8080/api/matches/1/result
+Content-Type: application/json
+
+{ "homeScore": 2, "awayScore": 1 }
+
+### 7. Record result of match 2 (0-0)
+POST http://localhost:8080/api/matches/2/result
+Content-Type: application/json
+
+{ "homeScore": 0, "awayScore": 0 }
+
+### 8. View standings
+GET http://localhost:8080/api/tournaments/1/standings
+
+### 9. Correct match 1 to 1-1
+PUT http://localhost:8080/api/matches/1/result
+Content-Type: application/json
+
+{ "homeScore": 1, "awayScore": 1 }
+
+### 10. Standings again
+GET http://localhost:8080/api/tournaments/1/standings
+
+### 11. All tournaments
+GET http://localhost:8080/api/tournaments
+
+### ===== EDGE CASES =====
+
+### E1. Record result twice -> 409
+POST http://localhost:8080/api/matches/1/result
+Content-Type: application/json
+
+{ "homeScore": 5, "awayScore": 0 }
+
+### E2. Negative score -> 400
+POST http://localhost:8080/api/matches/3/result
+Content-Type: application/json
+
+{ "homeScore": -1, "awayScore": 2 }
+
+### E3. Missing score -> 400
+POST http://localhost:8080/api/matches/3/result
+Content-Type: application/json
+
+{ "homeScore": 2 }
+
+### E4. Duplicate team -> 409
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "CSE Strikers" }
+
+### E5. Generate fixture again -> 409
+POST http://localhost:8080/api/tournaments/1/fixtures
+
+### E6. Register team after fixture -> 409
+POST http://localhost:8080/api/tournaments/1/teams
+Content-Type: application/json
+
+{ "name": "Late Team" }
+
+### E7. Bad scoring rule -> 400
+POST http://localhost:8080/api/tournaments
+Content-Type: application/json
+
+{ "name": "Bad Cup", "sport": "Cricket", "winPoints": 1, "drawPoints": 3, "lossPoints": 0 }
+
+### E8. Unknown match -> 404
+POST http://localhost:8080/api/matches/999/result
+Content-Type: application/json
+
+{ "homeScore": 1, "awayScore": 0 }
+
+### E9. PUT before any result -> 400
+PUT http://localhost:8080/api/matches/3/result
+Content-Type: application/json
+
+{ "homeScore": 1, "awayScore": 0 }

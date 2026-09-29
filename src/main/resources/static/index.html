@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeagueTrack — Tournament</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="tournament">
+
+<header>
+    <h1>LeagueTrack</h1>
+    <p>Intramural Sports Tournament Fixture and Standings</p>
+</header>
+
+<nav>
+    <a href="index.html" data-page="tournament">1. Tournament</a>
+    <a href="teams.html" data-page="teams">2. Teams</a>
+    <a href="fixture.html" data-page="fixture">3. Fixture</a>
+    <a href="standings.html" data-page="standings">4. Standings</a>
+</nav>
+
+<div class="current-tournament" id="currentTournament"></div>
+
+<main>
+    <section class="card">
+        <h2>Select an existing tournament</h2>
+        <div class="row">
+            <label>Tournament
+                <select id="tournamentSelect" style="min-width:260px"></select>
+            </label>
+            <button class="secondary" onclick="run(loadTournaments)">Refresh list</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Create a new tournament</h2>
+        <div class="row">
+            <label>Name <input id="tName" placeholder="Inter-Dept Football 2026"></label>
+            <label>Sport <input id="tSport" placeholder="Football"></label>
+            <label>Win <input id="tWin" type="number" min="0" value="3"></label>
+            <label>Draw <input id="tDraw" type="number" min="0" value="1"></label>
+            <label>Loss <input id="tLoss" type="number" min="0" value="0"></label>
+            <button onclick="createTournament()">Create Tournament</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>All tournaments</h2>
+        <div id="allTournaments"></div>
+    </section>
+</main>
+
+<div id="toast"></div>
+
+<script src="common.js"></script>
+<script src="tournament.js"></script>
+</body>
+</html>
